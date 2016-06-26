@@ -101,8 +101,8 @@ def embedding_attention_seq2seq_beam(dec_inp, use_initial, supplied_prev, suppli
                     a.set_shape([None, attn_size])
 
                 with variable_scope.variable_scope("loop_function", reuse=True):
-                    #inp = tf.cond(use_initial > 0, lambda: decoder_inputs[0], lambda: loop_function(supplied_prev, 0))
-                    inp = decoder_inputs[0]
+                    inp = tf.cond(use_initial > 0, lambda: decoder_inputs[0], lambda: loop_function(supplied_prev, 0))
+                    #inp = decoder_inputs[0]
 
                 input_size = inp.get_shape().with_rank(2)[1]
 
